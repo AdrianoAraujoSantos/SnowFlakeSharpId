@@ -9,7 +9,7 @@ namespace SnowFlakeSharpId
     public class SnowflakeId
     {
         // The epoch (in milliseconds) to generate the ID.
-        private long Epoch = 1704067200000L; // January 1, 2024, 00:00:00 UTC
+        private long Epoch = 1735689600000L; // January 1, 2025, 00:00:00 UTC
 
 
         private  long MaxMachineId= long.MaxValue;
@@ -28,6 +28,12 @@ namespace SnowFlakeSharpId
         private int _sequenceBits = 0;
         private readonly object _lock = new object();
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public SnowflakeId(Settings settings = null)
         {
             settings= settings ?? new Settings();
@@ -72,6 +78,11 @@ namespace SnowFlakeSharpId
 
         }
 
+        /// <summary>
+        /// Generate a new ID
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public long NextID()
         {
             lock (_lock)
@@ -112,7 +123,28 @@ namespace SnowFlakeSharpId
                 return id;
             }
         }
-
+        /// <summary>
+        /// Decode ID to parts to return to the data that generated the Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public (long Timestamp,uint DataCenterID ,uint MachineID, uint Sequence) DecodeID(long id)
+        {
+            long timestamp = (id >> TimestampShift) + Epoch;
+            uint datacenterId = (uint)((id >> DataCenterIdShift) & MaxDataCenterId);
+            uint machineId = (uint)((id >> MachineIdShift) & MaxMachineId);
+            uint sequence = (uint)(id & MaxSequence);
+            return (timestamp,datacenterId,machineId, sequence);
+        }
+        /// <summary>
+        /// Converts a timestamp in milliseconds to a DateTime object
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
+        public DateTime TimestampToDateTime(long timestamp)
+        {
+            return DateTimeOffset.FromUnixTimeMilliseconds(timestamp).DateTime;
+        }
 
         // Wait until the next millisecond
         private long WaitNextMillis(long lastTimestamp)

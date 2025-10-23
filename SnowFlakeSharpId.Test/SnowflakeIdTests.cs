@@ -9,10 +9,10 @@
             var snowflakeid = new SnowflakeId();
 
             // Act
-            var id1 = snowflakeid.NextID();
+            var id = snowflakeid.NextID();
 
             // Assert
-            Assert.NotEqual(0L, id1);
+            Assert.NotEqual(0L, id);
         }
 
         [Fact]
@@ -29,11 +29,11 @@
             var snowflakeid = new SnowflakeId(settings);
 
             // Act
-            var id1 = snowflakeid.NextID();
+            var id = snowflakeid.NextID();
 
 
             // Assert
-            Assert.NotEqual(0L, id1);
+            Assert.NotEqual(0L, id);
         }
         [Fact]
         public void NextIDThousandIdTest()
@@ -45,12 +45,12 @@
              // Act
             for (int i = 0; i < 1000; i++)
             {
-                var id1 = snowflakeid.NextID();
+                var id = snowflakeid.NextID();
 
-                if (ids.Contains(id1))
+                if (ids.Contains(id))
                     Assert.True(false);
                 else
-                    ids.Add(id1);
+                    ids.Add(id);
             }
 
            
@@ -65,12 +65,12 @@
             // Act
             for (int i = 0; i < 1000000; i++)
             {
-                var id1 = snowflakeid.NextID();
+                var id = snowflakeid.NextID();
 
-                if (ids.Contains(id1))
+                if (ids.Contains(id))
                     Assert.True(false);
                 else
-                    ids.Add(id1);
+                    ids.Add(id);
             }
         }
 
@@ -91,12 +91,12 @@
             // Act
             for (int i = 0; i < 1000; i++)
             {
-                var id1 = snowflakeid.NextID();
+                var id = snowflakeid.NextID();
 
-                if (ids.Contains(id1))
+                if (ids.Contains(id))
                     Assert.True(false);
                 else
-                    ids.Add(id1);
+                    ids.Add(id);
             }
 
 
@@ -117,13 +117,43 @@
             // Act
             for (int i = 0; i < 1000000; i++)
             {
-                var id1 = snowflakeid.NextID();
+                var id = snowflakeid.NextID();
 
-                if (ids.Contains(id1))
+                if (ids.Contains(id))
                     Assert.True(false);
                 else
-                    ids.Add(id1);
+                    ids.Add(id);
             }
+        }
+
+        [Fact]
+        public void DecodeIdTest()
+        {
+           
+            long timeStamp;
+            long dataCenterId;
+            long machineId;
+            long sequence;
+
+            var settings = new Settings()
+            {
+                MachineID = 1,
+                DataCenterID = 1,
+                CustomDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+            };
+
+            // Arrange
+            var snowflakeid = new SnowflakeId(settings);
+
+            // Act
+            var id = snowflakeid.NextID();
+            (timeStamp, dataCenterId, machineId, sequence) =  snowflakeid.DecodeID(id);
+
+            //Converts a timestamp in milliseconds to a DateTime object
+            var dateTime = snowflakeid.TimestampToDateTime(timeStamp);
+
+            // Assert
+            Assert.True(dataCenterId == 1 && machineId == 1 && sequence == 0);
         }
     }
 }
