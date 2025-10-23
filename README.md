@@ -1,4 +1,7 @@
 # SnowFlakeSharpId
+
+![Ícone do Pacote](icon.png)
+
 SnowFlakeSharpId is a unique ID generator based on [Twitter's Snowflake](https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake "Twitter Snowflake Blog"). It generates 64-bit, time-ordered, unique IDs based on the Snowflake algorithm. It is written in C# and is compatible with .NET Standard 2.0.
 
 The default bit assignment for this Snowflake implementation is:

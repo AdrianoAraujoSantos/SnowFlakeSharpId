@@ -4,20 +4,25 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/AdrianoAraujoSantos/SnowFlakeSharpId</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>SnowFlakeSharpId is a unique ID generator based on Twitter's Snowflake. It generates unique 64-bit IDs, sorted by time.</Description>
     <Title>SnowFlakeSharpId</Title>
-    <ApplicationIcon>7310975_snowflake_winter_snow_christmas_ornament_icon.ico</ApplicationIcon>
-	<Version>1.0.1</Version>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+	<Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="7310975_snowflake_winter_snow_christmas_ornament_icon.ico" />
+    <Content Include="icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

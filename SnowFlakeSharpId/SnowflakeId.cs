@@ -34,7 +34,7 @@ namespace SnowFlakeSharpId
         /// <param name="settings"></param>
         /// <exception cref="Exception"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public SnowflakeId(Settings settings = null)
+        public SnowflakeId(Settings? settings = null)
         {
             settings= settings ?? new Settings();
 
