@@ -101,13 +101,13 @@ The `Settings` class allows you to customize the SnowFlakeSharpId instance:
 
 ## Explanation of the NextID function algorithm
   
-1-The method is locked using a lock statement to ensure thread safety.
-2-The current timestamp is obtained using the GetCurrentTimestamp() method.
-3-If the current timestamp is less than the previous timestamp, an exception is thrown indicating that the system clock has gone back in time.
-4-If the current timestamp is the same as the previous timestamp, the sequence number is incremented and checked if it has reached its maximum value. If so, the method waits for the next millisecond using the WaitNextMillis() method.
-5-If the current timestamp is different from the previous timestamp, the sequence number is reset to 0.
-6-The timestamp, data center ID, machine ID, and sequence number are combined to form the final ID.
-7-The final ID is returned.
+1-The method is locked using a lock statement to ensure thread safety.<br>
+2-The current timestamp is obtained using the GetCurrentTimestamp() method.<br>
+3-If the current timestamp is less than the previous timestamp, an exception is thrown indicating that the system clock has gone back in time.<br>
+4-If the current timestamp is the same as the previous timestamp, the sequence number is incremented and checked if it has reached its maximum value. If so, the method waits for the next millisecond using the WaitNextMillis() method.<br>
+5-If the current timestamp is different from the previous timestamp, the sequence number is reset to 0.<br>
+6-The timestamp, data center ID, machine ID, and sequence number are combined to form the final ID.<br>
+7-The final ID is returned.<br>
 
 ## License
 
