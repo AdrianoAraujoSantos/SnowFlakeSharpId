@@ -1,4 +1,6 @@
-﻿namespace SnowFlakeSharpId.Test
+﻿using System.Collections.Concurrent;
+
+namespace SnowFlakeSharpId.Test
 {
     public class SnowflakeIdTests
     {
@@ -125,6 +127,7 @@
                     ids.Add(id);
             }
         }
+
 
         [Fact]
         public void DecodeIdTest()
