@@ -42,6 +42,11 @@ namespace SnowFlakeSharpId
         /// Gets or sets the number of bits for the sequence. For example, if set to 12, the sequence will have a maximum value of 4095.
         /// </summary>
         public int? SequenceBits { get; set; }=12;
+        /// <summary>
+        /// Gets or sets the behavior when the system clock goes back in time.
+        /// Defaults to Throw.
+        /// </summary>
+        public ClockBackwardsPolicy ClockBackwardsPolicy { get; set; } = ClockBackwardsPolicy.Throw;
 
         #endregion
     }

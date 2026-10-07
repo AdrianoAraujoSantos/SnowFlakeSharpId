@@ -11,7 +11,9 @@
     <Description>SnowFlakeSharpId is a unique ID generator based on Twitter's Snowflake. It generates unique 64-bit IDs, sorted by time.</Description>
     <Title>SnowFlakeSharpId</Title>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
+	<AssemblyVersion>1.0.4.0</AssemblyVersion>
+	<FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +29,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+	  <InternalsVisibleTo Include="SnowFlakeSharpId.Test" />
   </ItemGroup>
 
 </Project>
